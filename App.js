@@ -2,10 +2,10 @@ import React,{Component} from "react";
 import{
   SafeAreaView,
 } from 'react-native';
-import Navigate from "./navigation/cartNavigation";
 import { Provider } from "mobx-react";
-import stores from "./stores/stores";
+import stores from "./src/stores/stores";
 import 'react-native-gesture-handler';
+import Navigate from "./src/utils/routes/navigation/cartNavigation";
 
 class App extends Component {
   render() {
