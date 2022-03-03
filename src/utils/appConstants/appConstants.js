@@ -10,11 +10,13 @@ const Constants = {
     ADDITEM: 'Add Item',
     ADDED: 'Item Added',
     ADDTOCART: 'Add to Cart',
-    ADDRESS: 'Add Address',
+    ADDRESS: 'ADD NEW',
     SAVE: 'SAVE',
     CANCEL: 'CANCEL',
     HOME: 'Home',
     WORK: 'Work',
+    SAVEDADDRESS: 'SAVED LOCATIONS',
+    CONTINUE: 'CONTINUE',
   },
   Title: {
     HOMEDECOR: 'Home Decor',
@@ -89,8 +91,21 @@ const Constants = {
     NAME: 'Enter Name',
     LOCALITY: 'Locality',
     ADDRESS: 'Enter Address',
+    STATE: 'Select State',
     CITY: 'Enter City',
     LANDMARK: 'Landmark',
+  },
+  RGX: {
+    VALIDNAME: /^[a-zA-Z ]{2,30}$/,
+    VALIDCONTACT: /^[0]?[789]\d{9}$/,
+    VALIDPINCODE: /^[0-9]{6}$/,
+  },
+  SCREENTEXTS: {
+    SAVEDLOC: 'Saved Location',
+    PHONE: '+91 9889878758',
+    USERNAME: 'Mr. Hariom Rajput',
+    USERADDRESS:
+      'House No. 231 2nd Floor, Sector 23, Near by Water Tank and Temple, Gurgaon. Haryana, 122017',
   },
 };
 export default Constants;

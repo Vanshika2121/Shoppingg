@@ -101,8 +101,8 @@ export default Header;
 const styles = StyleSheet.create({
   header: {
     height: 44,
-    borderBottomWidth: 1,
-    borderBottomColor: 'gray',
+    //borderBottomWidth: 1,
+    //borderBottomColor: 'gray',
     justifyContent: 'center',
     backgroundColor: 'white',
   },

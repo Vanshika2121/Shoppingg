@@ -185,7 +185,7 @@ export class FloatingTitleTextInputField extends Component {
           onFocus={this._handleFocus}
           onBlur={this._handleBlur}
           underlineColorAndroid="transparent"
-          //onChangeText={(text) => onChangeText(text)}
+          onChangeText={(text) => this.props.onChangeText(text)}
           //onChangeText={this._onChangeText}
           keyboardType={this.props.keyboardType}
         />

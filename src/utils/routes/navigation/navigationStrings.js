@@ -6,4 +6,5 @@ export default {
   APPS: 'Apps',
   WISHLIST: 'Wishlist',
   ADDRESS: 'Address',
+  SAVEDADDRESS: 'SavedAddress'
 };

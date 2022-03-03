@@ -13,6 +13,9 @@ const ImageUrls = {
   wishlist: require('./../../assets/images/wishlist.png'),
   remove: require('./../../assets/images/remove.png'),
   tick: require('./../../assets/images/tick.png'),
+  phone: require('./../../assets/images/phone.png'),
+  greenTick: require('./../../assets/images/greenTick.png'),
+  greyTick: require('./../../assets/images/greyTick.png'),
   books:
     'https://www.incimages.com/uploaded_files/image/1920x1080/getty_655998316_2000149920009280219_363765.jpg',
   flower:

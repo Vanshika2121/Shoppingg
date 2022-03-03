@@ -116,16 +116,16 @@ class shopCart extends Component {
 
   _renderAddressButton = () => {
     const {button_tab_color, button_text_color} = globalStyles.colorCodes;
-    const {ADDRESS} = Constants.ButtonTitle;
+    const {SAVEDADDRESS} = Constants.ButtonTitle;
     const {navigation} = this.props;
     return (
       <TouchableOpacity
         style={styles.addressButton(button_tab_color)}
         onPress={() => {
-          navigation.navigate(navigationStrings.ADDRESS);
+          navigation.navigate(navigationStrings.SAVEDADDRESS);
         }}>
         <Text style={styles.addressButtonTitle(button_text_color)}>
-          {ADDRESS}
+          {SAVEDADDRESS}
         </Text>
       </TouchableOpacity>
     );

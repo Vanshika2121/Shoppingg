@@ -6,6 +6,7 @@ import shopCart from '../../../scenes/Cart';
 import Apps from './DrawerNavScreen';
 import Wishlist from '../../../scenes/Wishlist';
 import Address from '../../../scenes/Address';
+import SavedAddress from '../../../scenes/SavedAddress';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,11 @@ function Navigate() {
         <Stack.Screen
           name={navigationStrings.ADDRESS}
           component={Address}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={navigationStrings.SAVEDADDRESS}
+          component={SavedAddress}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

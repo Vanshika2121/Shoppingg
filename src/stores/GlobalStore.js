@@ -24,9 +24,14 @@ class ShopStore {
   @observable isFocused = false;
   @observable position = '';
   @observable values = '';
+  @observable addressBtnPressed = false;
 
   @action updateDummyProductData = value => {
     this.dummyProductData = value;
+  };
+
+  @action updateAddress = value => {
+    this.addressArray = value;
   };
 
   @action updateSubCategory = value => {
@@ -1260,6 +1265,44 @@ class ShopStore {
     'Lakshadweep',
     'Puducherry',
     'Ladakh',
+  ];
+
+  @observable addressArray = [
+    {
+      id: 1,
+      user: 'Mr. Hariom Rajput',
+      address:
+        'House No. 231 2nd Floor, Sector 23, Near by Water Tank and Temple, Gurgaon. Haryana, 122017',
+      phone: '+91 9889878758',
+    },
+    {
+      id: 2,
+      user: 'Miss. Vanshika Sharma',
+      address:
+        'House No. 153 6nd Floor, Sector 21, Near by Water Tank and Temple, Gurgaon. Haryana, 122017',
+      phone: '+91 9889878759',
+    },
+    {
+      id: 3,
+      user: 'Miss. Muskaan Sharma',
+      address:
+        'House No. 231 1sd Floor, Sector 23, Near by Water Tank and Temple, Gurgaon. Haryana, 122017',
+      phone: '+91 9889878757',
+    },
+    {
+      id: 4,
+      user: 'Mr. Vinayak Sharma',
+      address:
+        'House No. 231 2nd Floor, Sector 33, Near by Water Tank and Temple, Gurgaon. Haryana, 122017',
+      phone: '+91 9889878756',
+    },
+    {
+      id: 5,
+      user: 'Mr. Aryan Sharma',
+      address:
+        'House No. 231 1sd Floor, Sector 23, Near by Water Tank and Temple, Gurgaon. Haryana, 122017',
+      phone: '+91 9889878755',
+    },
   ];
 }
 export default new ShopStore();

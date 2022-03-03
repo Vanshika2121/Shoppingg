@@ -21,29 +21,22 @@ import Toast from 'react-native-easy-toast';
 @inject('productStore')
 @observer
 class Address extends Component {
-
   validateName = name => {
-    if (name.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    const {VALIDNAME} = Constants.RGX;
+    var valid_name = VALIDNAME;
+    return valid_name.test(name);
   };
 
   validateContact = contact => {
-    if (contact.length == 10) {
-      return true;
-    } else {
-      return false;
-    }
+    const {VALIDCONTACT} = Constants.RGX;
+    var valid_contact = VALIDCONTACT;
+    return valid_contact.test(contact);
   };
 
   validatePincode = pincode => {
-    if ((pincode.length = 6)) {
-      return true;
-    } else {
-      return false;
-    }
+    const {VALIDPINCODE} = Constants.RGX;
+    var valid_pincode = VALIDPINCODE;
+    return valid_pincode.test(pincode);
   };
 
   validateLocality = locality => {
@@ -59,6 +52,15 @@ class Address extends Component {
       return true;
     } else {
       return false;
+    }
+  };
+
+  validateState = () => {
+    const {productStore} = this.props;
+    if (productStore.state === 0 || productStore.state === '') {
+      return false;
+    } else {
+      return true;
     }
   };
 
@@ -78,15 +80,7 @@ class Address extends Component {
     }
   };
 
-  onPressSave = (
-    nameSubmit,
-    contactSubmit,
-    pincodeSubmit,
-    localitySubmit,
-    addressSubmit,
-    citySubmit,
-    landmarkSubmit,
-  ) => {
+  onPressSave = () => {
     const {
       NAME,
       CONTACT,
@@ -94,40 +88,48 @@ class Address extends Component {
       PINCODE,
       LOCALITY,
       ADDRESS,
+      STATE,
       CITY,
       LANDMARK,
     } = Constants.TOASTTEXTS;
-    if (!this.validateName(nameSubmit)) {
+    const {productStore} = this.props;
+    console.log("state", productStore.state)
+    if (!this.validateName(productStore.floatingTitleName)) {
       Keyboard.dismiss();
       this.toast.show(NAME);
       return;
     }
-    if (!this.validateContact(contactSubmit)) {
+    if (!this.validateContact(productStore.floatingTitleMobile)) {
       Keyboard.dismiss();
       this.toast.show(CONTACT);
       return;
     }
-    if (!this.validatePincode(pincodeSubmit)) {
+    if (!this.validatePincode(productStore.floatingTitlePincode)) {
       Keyboard.dismiss();
       this.toast.show(PINCODE);
       return;
     }
-    if (!this.validateLocality(localitySubmit)) {
+    if (!this.validateLocality(productStore.floatingTitleLocality)) {
       Keyboard.dismiss();
       this.toast.show(LOCALITY);
       return;
     }
-    if (!this.validateAddress(addressSubmit)) {
+    if (!this.validateAddress(productStore.floatingTitleAddress)) {
       Keyboard.dismiss();
       this.toast.show(ADDRESS);
       return;
     }
-    if (!this.validateCity(citySubmit)) {
+    if (!this.validateState(productStore.state)) {
+      Keyboard.dismiss();
+      this.toast.show(STATE);
+      return;
+    }
+    if (!this.validateCity(productStore.floatingTitleCity)) {
       Keyboard.dismiss();
       this.toast.show(CITY);
       return;
     }
-    if (!this.validateLandmark(landmarkSubmit)) {
+    if (!this.validateLandmark(productStore.floatingTitleLandmark)) {
       Keyboard.dismiss();
       this.toast.show(LANDMARK);
       return;
@@ -251,42 +253,54 @@ class Address extends Component {
           <FloatingTitleTextInputField
             attrName="floatingTitleName"
             title={ENTERNAME}
-            value={productStore.floatingTitleName}
+            onChangeText={text => {
+              productStore.floatingTitleName = text;
+            }}
             //updateMasterState={this._updateMasterState}
           />
           <FloatingTitleTextInputField
             attrName="floatingTitleName"
             title={ENTERMOBILE}
-            value={productStore.floatingTitleMobile}
             //updateMasterState={this._updateMasterState}
+            onChangeText={text => {
+              productStore.floatingTitleMobile = text;
+            }}
             keyboardType="numeric"
           />
           <FloatingTitleTextInputField
             attrName="floatingTitleName"
             title={ENTERPINCODE}
-            value={productStore.floatingTitlePincode}
             //updateMasterState={this._updateMasterState}
+            onChangeText={text => {
+              productStore.floatingTitlePincode = text;
+            }}
             keyboardType="numeric"
           />
           <FloatingTitleTextInputField
             attrName="floatingTitleName"
             title={ENTERLOCALITY}
-            value={productStore.floatingTitleLocality}
             //updateMasterState={this._updateMasterState}
+            onChangeText={text => {
+              productStore.floatingTitleLocality = text;
+            }}
           />
           <View style={styles.textAddressView}>
             <FloatingTitleTextInputField
               attrName="floatingTitleName"
               title={ENTERADDRESS}
-              value={productStore.floatingTitleAddress}
               //updateMasterState={this._updateMasterState}
+              onChangeText={text => {
+                productStore.floatingTitleAddress = text;
+              }}
             />
           </View>
           <FloatingTitleTextInputField
             attrName="floatingTitleName"
             title={ENTERCITY}
-            value={productStore.floatingTitleCity}
             //updateMasterState={this._updateMasterState}
+            onChangeText={text => {
+              productStore.floatingTitleCity = text;
+            }}
           />
           <View style={styles.textInputView(home_background_color)}>
             <Picker
@@ -310,14 +324,18 @@ class Address extends Component {
           <FloatingTitleTextInputField
             attrName="floatingTitleName"
             title={ENTERLANDMARK}
-            value={productStore.floatingTitleLandmark}
             //updateMasterState={this._updateMasterState}
+            onChangeText={text => {
+              productStore.floatingTitleLandmark = text;
+            }}
           />
           <FloatingTitleTextInputField
             attrName="floatingTitleName"
             title={ENTERALTERNATE}
-            value={productStore.floatingTitleAlternate}
             //updateMasterState={this._updateMasterState}
+            onChangeText={text => {
+              productStore.floatingTitleAlternate = text;
+            }}
           />
         </View>
         <Text style={styles.addressType(text_color)}>{ADDRESSTYPE}</Text>
@@ -343,17 +361,19 @@ class Address extends Component {
       <View style={styles.screenContainer(addressScreen_Background)}>
         <Header
           left={backButton}
-          onButtonPresss={() => navigation.navigate(navigationStrings.SHOPCART)}
+          onButtonPresss={() =>
+            navigation.navigate(navigationStrings.SAVEDADDRESS)
+          }
           ScreenTitle={ADDRESS}
         />
         {this.renderAddressUI()}
         <Toast
           ref={toast => (this.toast = toast)}
           position="bottom"
-          positionValue={150}
-          fadeInDuration={750}
+          positionValue={200}
+          fadeInDuration={1000}
           fadeOutDuration={1000}
-          opacity={1}
+          opacity={5}
           textStyle={{color: 'white'}}
         />
       </View>
